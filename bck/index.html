@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Favorite Moments</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma/css/bulma.min.css" >
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    /* Estilos para o menu hamburguer */
+    .navbar-burger {
+      background-color: transparent; /* Garantir que o fundo fique transparente */
+      border: none; /* Remove bordas indesejadas */
+    }
+
+    .navbar-burger span {
+      background-color: #fff; /* Cor das barras do hamburguer */
+    }
+
+    .navbar-burger.is-active span {
+      background-color: #00d1b2; /* Cor das barras do hamburguer quando ativo */
+    }
+
+    .navbar-menu {
+      background-color: #1a1a1a; /* Cor de fundo escura quando o menu é exibido */
+    }
+
+    /* Estilos para o container de áudio */
+    .audio-container {
+      width: 400px; /* Tamanho mais largo para o box de música */
+      height: 110px;
+      border-radius: 8px;
+      background-color:#1a1a1a;
+      padding: 2px;
+    }
+    .audio-container .title {
+      font-size: 14px;
+    }
+    .audio-container .subtitle {
+      font-size: 12px;
+      color: #888;
+    }
+    /* Barra de progresso */
+.progress-bar {
+  width: 100%; /* 100% do container */
+  height: 7px; /* Altura */
+  background-color: #ddd; /* Fundo cinza */
+  border-radius: 4px; /* Borda arredondada */
+  overflow: hidden; /* Para evitar overflow do preenchimento */
+}
+
+.progress-bar span {
+  display: block;
+  height: 100%; /* Preenche toda a altura */
+  background-color: #00d1b2; /* Cor da barra de progresso */
+  width: 0%; /* Inicialmente 0% */
+  transition: width 0.2s ease; /* Animação suave */
+}
+
+    
+  </style>
+</head>
+<body>
+  <section class="section">
+    <div class="container is-widescreen">
+      <nav class="navbar is-transparent">
+        <div class="container">
+          <div class="navbar-brand">
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" id="hamburger">
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
+          </div>
+
+          <div class="navbar-menu">
+            <div class="navbar-start">
+              <a class="navbar-item" href="index.html">Início</a>
+              <a class="navbar-item" href="notes.html">Viadagenzinha</a>
+              <a class="navbar-item" href="moments.html">Melhores Momentos</a>
+              <a class="navbar-item" href="carta.html">Cartinha rs</a>
+            </div>
+            
+            <!-- Box de música dentro da navbar -->
+            <div class="navbar-end">
+              <div class="card audio-container">
+                <div class="card-content">
+                  <div class="media">
+                    <div class="media-left">
+                      <figure class="image is-48x48">
+                        <img src="download.jpg" alt="Spotify Icon">
+                      </figure>
+                    </div>
+                    <div class="media-content">
+                      <p class="title is-6">Leans Pt. 2</p>
+                      <p class="subtitle is-6">Yunk Vino</p>
+                    </div>
+                    <button id="playPauseButton" class="button is-info">
+                      <i class="fas fa-pause"></i> <!-- Ícone de pausa no estado inicial -->
+                    </button>
+                  </div>
+                  <div class="content has-text-centered">
+                    <audio id="background-audio" autoplay loop>
+                      <source src="10 - Leans Pt. 2.mp3" type="audio/mp3">
+                      Seu navegador não suporta a tag de áudio.
+                    </audio>
+                    <div class="progress-bar">
+                      <span id="progress-bar-fill"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class="content">
+        <h1 class="title has-text-centered">Nossos Momentos Favoritos</h1>
+        <p class="subtitle has-text-centered">Veja alguns dos nossos momentos mais queridos juntos!</p>
+
+        <!-- Contador de dias -->
+        <div class="container">
+          <section class="section">
+            <h1 class="title" id="days-counter"></h1>
+            <h2 class="subtitle" id="time-counter"></h2>
+          </section>
+
+          <!-- Box para o carrossel de fotos -->
+          <div class="box carousel-container">
+            <h2 class="title is-4 has-text-centered">Memory Lane</h2>
+            <div class="carousel">
+              <button class="button is-info prev">◀</button>
+              <div class="carousel-images">
+                <div class="carousel-images">
+                  <figure class="image is-16by9">
+                    <img src="images/IMG-20241012-WA0019.jpg" alt="Moment 1">
+                  </figure>
+                  <figure class="image is-16by9">
+                    <img src="images/IMG-20241012-WA0020.jpg" alt="Moment 2">
+                  </figure>
+                  <figure class="image is-16by9">
+                    <img src="images/IMG-20241012-WA0021.jpg" alt="Moment 3">
+                  </figure>
+                  <figure class="image is-16by9">
+                    <img src="images/IMG_20240518_212159_394.jpg" alt="Moment 4">
+                  </figure>
+                  <figure class="image is-16by9">
+                    <img src="images/IMG_20241012_133056_591.webp" alt="Moment 5">
+                  </figure>
+                  <figure class="image is-16by9">
+                    <img src="images/IMG_20241012_133201_993.webp" alt="Moment 7">
+                  </figure>
+                  <figure class="image is-16by9">
+                    <img src="images/IMG_20241029_173219_901.webp" alt="Moment 8">
+                  </figure>
+                  <figure class="image is-16by9">
+                    <img src="images/IMG_20241029_173318_699.webp" alt="Moment 9">
+                  </figure>
+                  <figure class="image is-16by9">
+                    <img src="images/IMG_20241102_162030_604.webp" alt="Moment 10">
+                  </figure>
+                  <figure class="image is-16by9">
+                    <img src="images/PXL_20240120_202710168.jpg" alt="Moment 11">
+                  </figure>
+                  <figure class="image is-16by9">
+                    <img src="images/PXL_20240612_220418227.jpg" alt="Moment 12">
+                  </figure>
+                  <figure class="image is-16by9">
+                    <img src="images/PXL_20240612_220518642.jpg" alt="Moment 13">
+                  </figure>
+                  <figure class="image is-16by9">
+                    <img src="images/PXL_20240612_220522754.jpg" alt="Moment 14">
+                  </figure>
+                  <figure class="image is-16by9">
+                    <img src="images/PXL_20240612_220557071.jpg" alt="Moment 15">
+                  </figure>
+                  <figure class="image is-16by9">
+                    <img src="images/PXL_20240818_200822629.jpg" alt="Moment 16">
+                  </figure>
+                  <figure class="image is-16by9">
+                    <img src="images/PXL_20240818_200824797.jpg" alt="Moment 17">
+                  </figure>
+                  <figure class="image is-16by9">
+                    <img src="images/PXL_20240818_201041969.jpg" alt="Moment 18">
+                  </figure>
+                  <figure class="image is-16by9">
+                    <img src="images/PXL_20240818_201126646.jpg" alt="Moment 19">
+                  </figure>
+                  <figure class="image is-16by9">
+                    <img src="images/PXL_20241110_155935260.jpg" alt="Moment 20">
+                  </figure>
+                  <figure class="image is-16by9">
+                    <img src="images/IMG-20241007-WA0006.jpg" alt="Moment 21">
+                  </figure>
+                  <figure class="image is-16by9">
+                    <img src="images/IMG-20241012-WA0019 (1).jpg" alt="Moment 22">
+                  </figure>
+                  <figure class="image is-16by9">
+                    <img src="images/PXL_20240818_201041969 (1).jpg" alt="Moment 23">
+                  </figure>
+                  <figure class="image is-16by9">
+                    <img src="images/PXL_20241110_155927825.jpg" alt="Moment 24">
+                  </figure>
+                  <figure class="image is-16by9">
+                    <img src="images/PXL_20241110_155935260 (1).jpg" alt="Moment 25">
+                  </figure>
+                </div>
+                
+
+              </div>
+              <button class="button is-info next">▶</button>
+            </div>
+          </div>
+          <div class="has-text-centered">
+            <a href="index.html" class="button is-primary">Back to Home</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer has-background-dark has-text-white">
+    <div class="content has-text-centered">
+      <p>Made with ❤️ for us</p>
+    </div>
+  </footer>
+
+  <script src="script.js">  
+    const audio = document.getElementById('background-audio');
+    const playPauseButton = document.getElementById('playPauseButton');
+    const progressBarFill = document.getElementById('progress-bar-fill');
+  
+    // Alterna entre play e pause no clique do botão
+    playPauseButton.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playPauseButton.innerHTML = '<i class="fas fa-pause"></i>'; // Ícone de pausa
+      } else {
+        audio.pause();
+        playPauseButton.innerHTML = '<i class="fas fa-play"></i>'; // Ícone de play
+      }
+    });
+  
+    // Atualiza a barra de progresso conforme a música toca
+    audio.addEventListener('timeupdate', () => {
+      const currentTime = audio.currentTime; // Tempo atual da música
+      const duration = audio.duration; // Duração total da música
+  
+      if (duration > 0) {
+        // Calcula a porcentagem de progresso e atualiza a barra
+        const progressPercentage = (currentTime / duration) * 100;
+        progressBarFill.style.width = `${progressPercentage}%`;
+      }
+    });
+  </script>
+  
+
+</body>
+</html>

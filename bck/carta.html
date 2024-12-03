@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cartinha 💌</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: #ffffff;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .card-container {
+      position: relative;
+      width: 700px;
+      height: 600px;
+      perspective: 1000px;
+      /* Perspectiva para animação 3D */
+      margin: 0 auto;
+      /* Centralizar */
+    }
+
+    .card {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      transform-style: preserve-3d;
+      transform: rotateY(0);
+      transition: transform 1s;
+      cursor: pointer;
+    }
+
+    .card.open {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      /* Oculta o verso quando de frente */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+    }
+
+    .card-front {
+      background-color: #2a2a2a;
+      color: #ffffff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      border: 2px solid #00d1b2;
+    }
+
+    .card-back {
+      
+      color: #1a1a1a;
+      transform: rotateY(180deg);
+      /* Face inversa */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      border: 2px solid #2a2a2a;
+    }
+
+    .message {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .navbar {
+      background-color: transparent !important;
+      box-shadow: none;
+    }
+
+    .navbar .navbar-item {
+      color: #ffffff;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    .navbar .navbar-item:hover {
+      color: #ffcc00;
+      /* Destaque ao passar o mouse */
+    }
+
+    button:hover {
+      background-color: #ffcc00;
+      /* Destaque ao passar o mouse */
+      cursor: pointer;
+      color: #2c2c2c;
+      /* Cor do texto ao passar o mouse */
+    }
+
+    /* Estilos para o menu hamburguer */
+    .navbar-burger {
+      background-color: transparent;
+      border: none;
+    }
+
+    .navbar-burger span {
+      background-color: #fff;
+    }
+
+    .navbar-burger.is-active span {
+      background-color: #00d1b2;
+    }
+
+    .navbar-menu {
+      background-color: #1a1a1a;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar is-transparent">
+    <div class="container">
+      <div class="navbar-brand">
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" id="hamburger">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item" href="index.html">Início</a>
+          <a class="navbar-item" href="notes.html">Viadagenzinha</a>
+          <a class="navbar-item" href="moments.html">Melhores Momentos</a>
+          <a class="navbar-item" href="carta.html">Cartinha rs</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Conteúdo Principal -->
+  <section class="section">
+    <div class="container has-text-centered">
+      <h1 class="title has-text-white">Minha Cartinha para Você 💌</h1>
+      <p class="subtitle has-text-grey-light">Feito com amor</p>
+
+      <!-- Carta Interativa -->
+      <div class="card-container">
+        <div class="card" id="interactive-card">
+          <div class="card-face card-front">
+            <p class="title">Clique para abrir 💌</p>
+          </div>
+          <div class="card-face card-back">
+            <div class="message">
+              <p class="title">Para Minha bombada</p>
+              <p>"Escrever para você é uma das coisas mais preciosas que posso fazer, e hoje quero dedicar estas
+                palavras para expressar toda a gratidão que sinto por você. Eu sou imensamente grato por tudo o que você
+                faz por mim, por cada gesto de carinho, por cada sorriso, por cada palavra de incentivo, e
+                principalmente, por ser a pessoa maravilhosa que você é.
+
+                Nosso namoro é uma verdadeira bênção na minha vida. Ao seu lado, aprendi que o amor não é algo que se
+                busca com esforço, mas que se encontra de forma natural e plena quando encontramos a pessoa certa. Você
+                se tornou a razão dos meus sorrisos mais sinceros, meu refúgio nos dias difíceis e a minha constante
+                inspiração para ser uma pessoa melhor. A cada dia, percebo o quanto sou abençoado por ter você ao meu
+                lado. Agradeço a Deus por me permitir vivenciar essa jornada de amor tão genuíno.
+
+                O amor que sinto por você é inexplicável, tão profundo e verdadeiro que transborda em meu peito a cada
+                momento. Todos os dias me sinto mais grato por te amar, por te ter, e mais orgulhoso de você. Você é
+                alguém incrivelmente forte, determinada, e com uma capacidade de amar e cuidar que me emociona a cada
+                dia. Sei que você se dedica em tudo o que faz, sempre superando seus limites para alcançar o que deseja,
+                e eu tenho uma confiança imensa de que você irá conquistar tudo o que almeja. Eu estarei ao seu lado, em
+                todos os momentos, torcendo por você e caminhando juntos, com a certeza de que nosso amor é mais forte
+                que qualquer desafio.
+
+                O seu carinho, a sua presença, o jeito como você me faz sentir amado são coisas que não consigo colocar
+                em palavras, mas que tocam profundamente o meu coração. Mesmo nos momentos mais difíceis, só de ver você
+                me faz sentir que tudo vale a pena.
+
+                Você é minha prioridade, minha escolha diária, e quero que saiba que estarei ao seu lado em todas as
+                circunstâncias. Não importa o que aconteça, meu amor por você nunca mudará. "O amor é paciente, o amor é
+                bondoso, o amor não arde em ciúmes, não se ufana, não se ensoberbece" (1 Coríntios 13:4). Esse é o amor
+                que eu sinto por você, um amor que cresce, que cuida, que luta, e que permanece firme, mesmo nas
+                tempestades.
+
+                Obrigado por ser quem você é, por tudo o que você faz, e por me mostrar, todos os dias, o que significa
+                um amor verdadeiro. Eu te amo mais do que palavras podem expressar, e prometo sempre te dar o meu
+                melhor, porque você merece o melhor do mundo.
+
+                Eu te amo hoje e sempre."</p>
+              <p>Com carinho, ❤️</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const card = document.getElementById('interactive-card');
+    card.addEventListener('click', () => {
+      card.classList.toggle('open');
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const burger = document.querySelector('.navbar-burger');
+      const menu = document.querySelector('.navbar-menu');
+
+      burger.addEventListener('click', () => {
+        burger.classList.toggle('is-active');
+        menu.classList.toggle('is-active');
+      });
+    });
+  </script>
+</body>
+
+</html>

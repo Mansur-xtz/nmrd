@@ -1,0 +1,190 @@
+/* Reset e estilo básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #2c2c2c; /* Fundo escuro */
+  color: #ffffff; /* Texto claro */
+  font-family: 'Arial', sans-serif; /* Fonte limpa e padrão */
+  min-height: 100vh; /* Garante que o fundo cubra toda a altura da tela */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar */
+.navbar {
+  background-color: transparent !important;
+  box-shadow: none;
+}
+
+.navbar .navbar-item {
+  color: #ffffff;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.navbar .navbar-item:hover {
+  color: #ffcc00; /* Destaque ao passar o mouse */
+}
+
+/* Container principal */
+.container {
+  flex: 1; /* Ocupar todo o espaço disponível */
+  margin-top: 40px;
+}
+
+/* Contador de dias e tempo */
+#days-counter, #time-counter {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #ffcc00; /* Cor destaque */
+}
+
+/* Carrossel */
+.carousel-container {
+  margin-top: 30px;
+  background-color: #333; /* Fundo do carrossel */
+  border-radius: 12px; /* Bordas arredondadas */
+  padding: 30px; /* Maior padding para aumentar o espaço */
+  max-width: 90%; /* Ajusta o carrossel para ser mais flexível */
+  margin: 0 auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra suave */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative; /* Posicionamento relativo para os botões */
+  height: 700px; /* Ajuste de altura para a box do carrossel */
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centraliza os botões */
+  width: 100%;
+}
+
+.carousel-images {
+  display: flex;
+  overflow: hidden;
+  width: 100%; /* Usa 100% da largura do contêiner */
+  height: 100%; /* Ajuste para que as imagens usem toda a altura da box */
+  position: relative;
+}
+
+.carousel-images figure {
+  height: 610px;
+  flex: 0 0 100%; /* Garante que as imagens se ajustem à largura do contêiner */
+  margin: 0;
+  transition: transform 0.5s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-images img {
+  width: 100%; /* As imagens irão se ajustar à largura do contêiner */
+  height: 100%; /* As imagens irão se ajustar à altura do contêiner */
+  object-fit:contain; /* Faz com que as imagens cubram o espaço sem distorção */
+  max-width: 100%;
+  max-height: 100%; /* Garante que as imagens não ultrapassem o limite da box */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Sombra nas imagens */
+}
+
+/* Botões */
+button {
+  margin: 0 10px;
+  border-radius: 5px;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+  background-color: #444; /* Fundo neutro */
+  color: #fff;
+  border: none;
+  position: absolute; /* Posicionamento absoluto para os botões */
+  top: 50%; /* Alinha verticalmente no meio */
+  transform: translateY(-50%); /* Ajusta para que o botão fique no centro verticalmente */
+}
+
+button.prev {
+  left: 10px; /* Alinha o botão anterior à esquerda */
+}
+
+button.next {
+  right: 10px; /* Alinha o botão próximo à direita */
+}
+
+button:hover {
+  background-color: #ffcc00; /* Destaque ao passar o mouse */
+  cursor: pointer;
+  color: #2c2c2c; /* Cor do texto ao passar o mouse */
+}
+
+@media (max-width: 768px) {
+  .navbar {
+      flex-direction: column; /* Torna a navbar vertical */
+      align-items: center; /* Centraliza os itens */
+  }
+  .navbar .navbar-item {
+      padding: 10px; /* Espaçamento maior entre os itens */
+      text-align: center;
+  }
+}
+
+  .carousel-container {
+    padding: 15px;
+    max-width: 100%; /* Aumenta a largura do carrossel para preencher a tela em dispositivos menores */
+    height: auto; /* Ajusta a altura conforme o conteúdo */
+  }
+
+  button {
+    padding: 8px 15px;
+  }
+
+
+/* Box para "Favorite Moments" */
+.box {
+  background-color: #1a1a1a; /* Fundo semelhante ao index */
+  border-radius: 12px; /* Bordas arredondadas */
+  padding: 20px; /* Espaçamento interno */
+  margin: 20px auto; /* Margem para centralização */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra suave */
+  color: #ffffff; /* Texto branco */
+  max-width: 800px; /* Largura máxima para alinhamento */
+  text-align: center; /* Centralização do texto */
+}
+
+/* Título na box */
+.box h2 {
+  color: #ffcc00; /* Destaque */
+  margin-bottom: 15px; /* Espaçamento inferior */
+}
+
+/* Notas com hover */
+.love-note {
+  background: #444; /* Fundo padrão */
+  color: #fff;
+  padding: 10px 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  transition: all 0.3s ease; /* Transição suave para todos os efeitos */
+  cursor: pointer;
+}
+
+.love-note:hover {
+  background-color: #ffcc00; /* Destaque ao passar o mouse */
+  color: #2c2c2c; /* Texto escuro para contraste */
+  transform: scale(1.05); /* Leve aumento no tamanho */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Sombra mais intensa ao passar o mouse */
+  transition: all 0.3s ease; /* Garante que a transição seja suave */
+}
+
+/* Responsividade na box */
+@media (max-width: 800px) {
+  .box {
+    padding: 15px; /* Ajuste para telas menores */
+  }
+}

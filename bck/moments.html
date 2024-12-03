@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Momentos Favoritos</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+      /* Estilos para o menu hamburguer */
+      .navbar-burger {
+        background-color: transparent; /* Garantir que o fundo fique transparente */
+        border: none; /* Remove bordas indesejadas */
+      }
+  
+      .navbar-burger span {
+        background-color: #fff; /* Cor das barras do hamburguer */
+      }
+  
+      .navbar-burger.is-active span {
+        background-color: #00d1b2; /* Cor das barras do hamburguer quando ativo */
+      }
+  
+      .navbar-menu {
+        background-color: #1a1a1a; /* Cor de fundo escura quando o menu é exibido */
+      }
+  
+      /* Estilos para o container de áudio */
+      .audio-container {
+        width: 400px; /* Tamanho mais largo para o box de música */
+        height: 110px;
+        border-radius: 8px;
+        background-color:#1a1a1a;
+        padding: 2px;
+      }
+      .audio-container .title {
+        font-size: 14px;
+      }
+      .audio-container .subtitle {
+        font-size: 12px;
+        color: #888;
+      }
+      .audio-container .progress-bar {
+        width: 90%;
+        height: 7px;
+        background-color: #ddd;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .audio-container .progress-bar span {
+        display: block;
+        height: 90%;
+        background-color: #00d1b2;
+        width: 0%; /* Inicialmente 0% */
+      }
+    </style>
+  </head>
+  <body>
+    <section class="section">
+      <div class="container is-widescreen">
+        <nav class="navbar is-transparent">
+          <div class="container">
+            <div class="navbar-brand">
+              <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" id="hamburger">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+  
+            <div class="navbar-menu">
+              <div class="navbar-start">
+                <a class="navbar-item" href="index.html">Início</a>
+                <a class="navbar-item" href="notes.html">Viadagenzinha</a>
+                <a class="navbar-item" href="moments.html">Melhores Momentos</a>
+                <a class="navbar-item" href="carta.html">Cartinha rs</a>
+              </div>
+              
+              <!-- Box de música dentro da navbar -->
+              <div class="navbar-end">
+                <div class="card audio-container">
+                  <div class="card-content">
+                    <div class="media">
+                      <div class="media-left">
+                        <figure class="image is-48x48">
+                          <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMSEhUSEhIVFhUXGBcYGBcXFxgXGBcXFxcXGBgXFxUYHSggGBolGxgXITEhJSkrLi4uFx8zODMtNygtLisBCgoKDg0OGxAQGi0lHSUtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAOEA4QMBIgACEQEDEQH/xAAcAAAABwEBAAAAAAAAAAAAAAAAAQIDBAUGBwj/xABPEAABAwEEBQcGCAwFAwUAAAABAAIRAwQSITEFBkFRcQcTImGBkaEyQnKxwdEUIyQzUrKz8BYlNGJzdIKSosLD4RU1U4PxY2STRFSj0uL/xAAZAQADAQEBAAAAAAAAAAAAAAABAgMABAX/xAAkEQACAgICAgIDAQEAAAAAAAAAAQIRAyESMUFRBDITFGEi8f/aAAwDAQACEQMRAD8A2XKTTnR1fqFM91WmuCmq2YvDvG3Ed4XonXOjfsNdu+n6iD7Fz9+g7PRvVW1K/wAS2u8dOmXXdHuq0KRbNLyeZBJERNQHiGrMjmZeDkRjEY5zl3pvnB9Id4++w9y6vbdWKFnDwKtUFjGOA5ynM2S0to0iRzfRa2/Mz0jO4qBpTU6gyzWm6at2zutDG3nM/wDTMfXpOMMBMvqVAcRmhxBRzgpKcKQVMUSiSkSwAiiRolgAQQQWMBGggijHUeRPK1/7H9VbjTYdcbeABvVcpOHMVwM9sQsPyIZ2v/Y/rLfawDoN4v8AsKyquhkZTk0b8p0kP+4/qV1qnN+VO9FnqqLM8mw+VaT/AFj+pXWqI+VP9FnqqImJTmppzVJcE2WomOJcqw+Xn9FT9bljitnys/5gf0VP+ZY0pH2IJKIoyiU2YJBBBKYCCCCBg0aJBYx6f1kYXWGuBmbPV77jiFwtmna4a0OfaS660OcLZXF4gQ7APgB2Z4DrXoC2U71ne3fTeO9pC86varN0XirJFHWKuHTUqWpzeiLvwyuJF55fLg+cQWfupi3awV6lM0+ctEuPTLrTWe1zS4SCxzodLZBnO9GxRnhMOCHIzQwQkEJ1wSCEojG0SUiWAJIQRlBYUJBBBYwEYQSgEUY6fyHjpWvhQ9dZdC0+Pixxf9jVWA5DfKtfCh66y6Jp0fFji77KoqeBkZPk4b8r0n+sf1K61EfKn+iz1VFnOTofKtJ/rH9SutO0fKX8GfVciElFqSQnrqSWrAOGcrH+YO/R0/UVjStlyrH8Y1PQpfUBWNKViMSUkpRSVNmCQQKJAwEEEEDCpRooQQAetKTZYBxHsXnKvTjDcvSFl8kcV580xSu1qjdz3jucQqyOqBUVGph4UqoFHelC0R3BNkJ56acsTY2QihLKSsKJhFCUUSwAoQQRrACCUEttI7f79ydYGwRcJMiDOIABkADAzI7kyRqOlchvl2v0aHrrLounW9AcXfZVVxTVLWT4C6o6kbt+6HB7Ocabl6MQWkeUcl0Wx6507UwNddY+XYtdLDNKoBmA5hJgAOEEkAElU8DJaD5Ox8q0n+s/z1lp2j5Q/wDY+qVm+TsfKdJ/rJ+vWWnYPlFT9n6iBiXCSQnYSSETHBOVP/Mq3UKX2TPeseVruVA/jO0f7X2FNZJyViMbKIoyiSMAlElIkpgkYCJKCxgI0SCBj1vZfJ7VwnWmndtdoH/Wq/Xcu7WU4O4rievLLtutA/PnvAd7VSXR04+zM1wNii1ApdVRXhKMyO5NOCfeEy4LE2NlJSykkLCiSEkpSJYAQCdpjEZT17OtJY0nAKzsNiLnQREYHfmdhyR62GMbdIZpWZzjgJ9vds6lY09DVIyjthaLRejcMArmlocnYueWd3/k74fFVXJmFtNlq3QxxvBsxlhtwJyHUq+tTAbF03pMknAjCBdjCCDjOMre6Q0VdWd0hYsCnhmvsTL8elaNLyZay2ayisLRVLXVHMIlr3zF6SS0H6QxPWuk2K0sqVnOpva5rrpaWkEEXBiCF52pVTTeHbQQRhOIMjDat3qtrqGOAfSYxxdi5jTdcXQJIB6xkJg9UHobONI7AQkkJNltDajbze3GYOfqIPWCCnCExjz5ymn8Z2njT+xpLKFanlJ/zO1ekz7KmFlylJsbKSllJKVgElElIkpgk/YbI6q8NamVudRrC25fjpEnHgUstIrihylTKz8Eqm9BdHuIKds7fwY/R0OxVMXdnrK5Jyisi31uvmz/APG3+66howmSeoLm/KdTi2T9Kmw+tvsXRLo5odmKqBRqgUuqFEeEpRkdyacE+9MuWJsbISCEspKIgmEUJRSVgEmg26QDt6TvRAvAdufcrrVunOJVDZ/KPov+qVo9ANvQ1u4TxgEnxS5Pqy2D7o2ujADDQQO1aez2WBmOtZXQ1APIZzLLpmajyC5t38zyoOyP7qZzzqNQsZERljAOfuw61yKoqz0Hc3SF6ZDJDWy9581o9pwCy2kqDxMtiNn/AAr+wtFYOBc5r8wQY2g9owywzzUe3WANLSA4BrYcXOLi8/SO49QWtLZqbfE55amdInj9Uptoy3QPa0eGKubZYQeddPkAujeIPj/dQLHRNZ7KYEF5bTGBPShrAe9wK7oStHm5IOLO36ltLrPZ6rCLj6Q529N7nGi6XDYZcHTPjs0RWY5MrTzmj6eJJY6o3Ez55cB3OC1BTkzzvyin8ZWr0x9mxZlwWj5Qj+MbV+k9TWrOOQ8CMQUlKKJKxRJRJRCSgYJbXVPS/NUg00nOEkXmkZzMQVjGNla/VKxGtSfRFTmzfDiYvYQMBjhiPBJLov8AHvlo1f4QN/0637iCZ/Bmt/7sf+If/ZBT0d2zpOi2mR6J9iwvKnTi1MO+i3wfUXT6FnDXDgufcrVL4ygfzHDudPtXS1o44fY5tUUaopdQKLUSFGR3pp5Tz0y5EmxopKcKQURWJKTCUUSwo5Zs/wBl/wBRy3OiWAUKFRuwhrvSumRv831LC0jBBV/oq1XS9jiAJeQTscwtiI3gx2BTyRuJ0YJ8ZHRNHkgYgTsjMe8pllEc703taCSMTiTtw7+5RdFW2VY0KovSYg5g7eIXFXg9K/JGoUAyoSHEtJImCBIxlp2hO6RtWEFLtzgT0SN2ExwGCqNJVcEeL6ByXZRWyuGisIHTaG9pcBh2E9ipdG1blWk+Yh7XTjhddTfl2LSaG0RUtlZ9Gm1hutLnOccGy17BhGcuBHBUumtEVLLVNGqOk0Nyy6TCRG/YOxd+NUjy8zuR6Dsdip0gW0mBjS5ziBlecZJTxSLHVv02P+k1ru8ApwqhI846+46QtX6V3uWdK0WvH5daj/16ng4rOOQ8CPsIokZRFAARSClokrATLAynzdVzib4DRTAGBLndIuOwBjXdrgrjVS1c3XBJhroaeJy8fWqBpwhP1qsMgZz9/Us1aLQlxdnX/hA3oLk3+P2j/VPcgpcTr/aiep/OH33rAcrbPyc/pR9mVvgcQsTytM+Konc9472g+xdD6OaHZymqFFqKXVOBUOokRVkd6acnXJlyJNiCkFKcklERiSilGUlYAoFTifjA3YfXUYBPfB7FBCsLHZXVqjWtEYYncGiS7uCUZGj0NanXWOO0LT6PtZBkUw7qMDxhVOjLGLgaVJZRqMMMI7VyNqz04ppbLjSVao7NrWDcFmbdUxjM7uKn211c4uLRuiSoDrPdbeOJO05ox7BK6LnkYl1W01DmWsnte6Pqq71y1VfbK16m5ocwwQcJFxhGPHDtUPkZsxYy1B4IeKjAR1XS4ZekT2rZaMtlOq+o6k9rxezaQY6DMDuPUV3HmC9X6D6dloU6gh7KbGuGeLWgZjgpxSiklYB5y1yM2y1/p6v1ys45X2uDvllq/WK32jlQlbwI+wkRRlCEKAJKKEohX+pGgvhlpax3zbRef1gEAN7Se4FajELR+iKtVpe0ENaCZg43RJDQM0p1ivvFMMlxxvNNwHD6MEdeELsZ0WKRIaAIPRAEYEQQO5ZzTGrvNvFei66JvFkDDCH3ZykEmE/BFFRgP8DduP73/wCUFsr1n/13f+N3vQR4RNxR2yMQslyrN+S0zurDxY9a+ps4rMcp7JsRO6ow+Dh7VNjR7OMVlEqFS6xUOolKsZcmnJx5TLkSbYlxSSjKJEUSUqnSLshKl07FHld3vKmMG7DqWoKRDoWKT0jlmARPitFqhWY2u0uAg9GSR52wkmAJ24cVW3MQnbKICDQ60b02Lm3XRl5p3tPkkYnZ4gpdo6MGJ2Jerukxa2Cm8/GtGBJzF2L0uJJ8kS1o61OtFiguY8YtiRnnlxB3rinDizuhkUlXkorfXwwA2AScpnZtyUDSI6MK9/w4TMZdc+viUxSoNxqP8lkuM5GNmeWUoLb0O9J2UlLWGvYK3xJbBbTL6ZEtcQ2MciHRtHiqmrpwttRtVEGkS+/dDpEky5swJYTOEZFRdNWznaj6gEBxwG4bNgVZUfgJHjB9y9CK0jzJPbPTFmrtqMbUbi17Q4HqcJCWvO+h9PWiymbPWewZls3mHfLD0TtxiV0rVjlLpVYp2sClUOAqD5px65xpnjI6wjQhybWw/LLV+sVvtXKnKs9ZXzbLSf8AuK32jlWOSroR9iUpJRhMhQ10/kXs4LbS+MZpCeoXyR4hcwXV+Rr5mv11AP4B7/Uigo6BaWAnGFX22zggAtBk4YBTQRJc7u9ibguJcewbgnCRPgbdw8EFIuoIUG2aSrks/wApDZsFXqNM/wAbR7Vf1CC2RiMFTa/NnR9f0Wnuew+xTHXZwqoc1EqFP1XKLVclHbGnFMuKW4polYRgJU7Rlnk3j2e9Q6NO84NH3G9XrABgMgMEyCkKdTBQ5mOxFSdMePjilvds70wwimcQesd0wpvwWGGd/tUSVZVHAh44+9KxkR7HXdTcHMcWkGQQYI4ELc2HSDLZTuOdcrNBuluBaTecXU2taXVZMXqZPWFgZUvRtRwqMuPuOvNAdJF0kwCSMQEso2gp0a/4HpFvRdTp3JI53MENBJIa10kwDAgYwMFT64aQuj4M0zdPT6oPkZQcQHmNpjYtnpOwW34IwfCKfOS4Om7k4EOipHlNaCSRji/FcjruSwgk7o0sja2yLVxUes3DtU1lO85rRmSAO0wuqWPk+sYADg55AHlPdicZ8m6N2xUbolRyKy2Z1QtYxpc9xgAZknIKw01qtaLKA6syGna0yAcocRkV2KxatWezPFWnRYxwBAMmROe2AYwmFC100QLXZXNZeNRhvshwLS4ZtI2y0mOuEvM3E4RaKUYqOVYPb7VAe0jAiCnaJMJCE/ZrI+p5LSRtOQHEp19jDfKqNncMUUmLZEC6tyQCKFU76vqYxcqhdf5LqzBY8+kHPJGRPSMRv2IoKNg9vSJmccO7FONxCTQp9ETnt4p2EwRNxBKlBYwVG0GmYzacxu6wndbyHWC0EYjmXHuE+xMFs5qFp2sW2S0M2GjVHaWOWlHyaMjiFVyjVCnHuTL1IrYhxTTktxRUqd5waNv3KApY6Kow0v2nLgpbTj996MiBCQ12fYnGDouw7fagawOABPh2ph2F4dc96XSdgFg2POqCYy4q/wDgjWXml1Q4wXBjA3dILqgJHYs9VO/LcfYobmzJG057ISsNlvUEEiZgkSNsbVM0NpE2euysACWOBg7dhHcSqhto35onWhowJHasazsNq1laG88220TTDQ8UYArEjpc2TOBODSYylcnt1oNR7nmJc5zjGAkknAbAoprTkQklyyVAbOhakaCZUpUK9zpU6jnnAdNskCdpgjD0TvK3potbDsGtgSZxMGYbBxmMioOr1JtKz0IiG0mN9JxaCeqJJMlS7XSm6YDM4Ii9uB68eJx75sIVFgxJaXOnGcmlxwGHURshZTX7WZlmBo0g3nyJa5hMMB85wjOZgdUncrHWXWNljoue9t+qeiwA9F74MX4OQ24bIGYXGLZan1XufUdee4y47zw2DCANgACMY2BuhioZOOO9Xeh9EU32eraLTUAaCAyn59UjK6dgGSonHFSrFUdUNwmYhrW8cBA2mYV0Qn0C01qlYinTEDJrGgyeoAZq/sPJ/cZz1urtoUxmAQDjkC8yAfzQHFa+x2WzaKsZtNVgdaD0ZnFzjlSpzkN5GxpOwBc30rpSrbKvOVnScbrcQxg3Mbs45naSs9sC0i1rWvRlLCjZH1vz6jiwHhfvO/hatbqZRaGsusuNMuDZLroOIF4iTE5rlz6RGYK6pq664ym7dE8CI9ynJpNFsSbjI2rckCE0yrISr6qTFI0i+gsYDjijtdEOaQcjmOoqPRqS0HcY7sPEDxU8iWyE1iHn3TtmFK0VabfJa9wb6M4eCrXuWw5QLCBU50bX1GO4i7UHbDz3LO6L0cKzw0vu9kqclTKp2VhKn6LpwC47cB9+PqW2/AGzU6Lq9WtVLWNLiG3BPUJGZMDtWTAAEDAJEFIceUy04FHeCIiAeCYIVXPiPUidUGZGHak13QJ3K1oau2s2enaG0ucZUAPxUve2crzAJE9UjrWMU9RxeQMY8Y2pFpbAwwx8EVSQ7aCNmRBvAZbOCl0qwIh0Hs+8IUEiUnkjPJNvN6TJkbVNfZm4w0ifo4hMmxxgHRxC1GZCjrShIyJ7CnDYnDceB96FopO+ie5ahDS6D5RLZZWsphzajG4Br24wBAAcNwykFaK08rTSxsWepzvnTUAYODgC5w6uiuYNwGKS5w3JWg8mX2n9NutlUVXADACAXECPSVYX/fqUak6O1KJlMuhW7HGlbPkzszXPrPuBz2XLpiS0G9MCQBkMc+9YtohbrkgeefrNgnoAyAYEO2nZM+BTIxt7dZalZhbVu83GLSGlsZ4zllvVadXbO4fM0+xrQe8BTNcbW5t2nTkE9IkZgDdGIJJ8CqvR1mykuE459k4Kcsyi6o6IYHJWM2/VuhTa53N04AJktGwJ/QnzYB3Kbb7IHN5vnHQRiLxx6sVW0bPUot6EVG7rwB/eKjkyKVUXxYXG7L/RtVwBBxA27QNk+/qVlDokQ4dSxlh1nbRrhtZrqV4RBLXNOP0mkxxW2dTA6TDnjhkeG9dON3FWceWNS0Nc4fou7kE7zjt/ggqE6IdjqfON3XXDtwP1Qriyu6Kzmjn/AB5G9jvBzY9ZVxZKkN7x3LR+oJ6kYbXay3rPbMMadanUHbTptd4ErmVK0Fjg5pghdm02wO+HU4kOoNeP3ajf5QuM1C3clyM0TVs11Y6iaNem+o0xIBjEYgzO9Z91tpvqRTY4NOV4gntIgKrqZqRoodOdw8T9yo3RVNydE8tIzlB2Su6Rbd6TA4dfs2qv0jTphpLQ5pA8mbw7NqCy32WlhraZTW2v0Y2n2Lp/JvrJRFmbQrVxTqXObbe6APTq3S2plN2owbD0FyihZ6ld92mwucdjR944lWztE17jXCk9wuXpaC6GjMuuzdG3GMCDkU12yCtjD3lznOebzjMkmSXEkkneZxQs0EQ5MF2MI+cPaiEfdZSPJcRh1+xJBqjzge5H8OIGLQcNh38MEXw1p2HwKwAGq8Z054f2SXWwbQ4d3tShaGHGe+U5zgOTge0I2YZNrb9I9yYrVmn/AISrRdjITwy7VDKDkxWyZYbKKrni8WhlKpUmLxPNsLg2JESQBM4TtTTTwSrJarjarQ3Go0MvTF0X2vMDaTcA4EqTozR1S0Ou02yfAcStaW2ZJt0iKtXyZ6UqUbWGse1rKsNfeF6SJuAbjeMdqptPaDrWUtFW70pgtMjDMHAY4qro1yx7XtMFjg4EbC0gg94WtNaGVwls7s/XFhqOomkapb5V1p6PVDsJ7Ul2lNH1ei+9SI6nMg7w5uG1Z2jZG2Wo9oc5wqPvCo6Jc84uyyAyG+Co2lCOZdWf5peMMI8qPEtUHL/VHdGK430X+kdVqNZt+la31BsBqBze9kH1rG6S1efTaKg5wNIvXmvdBaRIO8doCqaNrfTDHPvS4AtcBdJBEyHg49eC3OhdMh+BtDH9FpiWvInYXNPUcCJVJwUdk4SU9XsotT6dJlRzr4c4hvlOBJzkDfsXSbNUg3Dlm3hu7FkrXouzViXFlKTngce4jHrTbLKMGtqEBuA6TjEdqCzxSpGfx2zcXOsoLGfAz9Md596C37C9A/V/paaKfetRjzaZn9pwj6p7ldUndJwWa1TcTz9bY991p3tp4fWLleF3SkrtitHDkdyK3TD4q1PzrK/+FwH864jK7Rpd4NqpjfQrDsv0Vx/SlmNKq5h2QexwDh60mVasEWFYKTXPDXZHsV/pSx06T2NptA6ALjMySTn2etZenVukEbFYHSZqu6QAIaGjrAnxxXNLo6MbVl/RqYZ4I6jWxlPt61TtrkbVIFpkfnD74KLR1qaZa6IpkP6JLQ7Eta4tvbgYImTAx39qstYLSWkWdhgNEGDm6AHZYYkercq3QlvAqtxjyIicek0nISZjL+ys9KljbYS7I4g8ctqnJ+x4pPoh2ax9HER6+1Rq2jScS3PqWjZSaWmeKjVJAw4Dq2KayWyzxqinp6HZtAJ9qepavUXYEMB6hl4qSW4wfHDwRCiMQQ69hDgcuIR5P2ZY4+inqarMmC+5PnEy0bpwJhPWrUJ7W3/hFMjHITgBJxncr1lS6OmJbvHuVXpiiGsv0qhAmS0HomZBkbDmmjlk9WTn8fGt0UWkNTbVTAqMpmpTcJDm4fwkyewKopMYx3xocRjea03XA9oO3qXSLDbHVKIbRrYDAtdlI2Tm1VVrsrHki00xf37exypHO12iMviJ7izGNLYJACfs9Sq0E077RtLS5o7xtVtYrNRo1XE0mVmlpF15kCdoOx2GeKmaX0w+pSLLjA3KGyMNmGWUDLYqvL6IxwVdmc0rparaTTvkkU2wCcycLzj1mArDVTVypba7WBpFMEGo+MGt2ifpHIDtVTZKLqhDGgz7BmV3vVmyGjZ6VN2Dm02yNxN4kdhKrjjojLbtlBrjo4tolgHxRxD8+YcMRe282cpzCx+ndKF9A0nVIe4te+60FhMRF8HbAMgHcuw1IIg5LLaZ0IGsdzVMPpwZo+2nOXo5boyIljp2kWhltcZMxlvp2W1UqYFVreba1jYADgGjKCJO0qus+qFQw6jaAAScXNeyeBxDlYaKZQfU5tlVtN3m0bTRbUbM4tDnY8ADKY1t0PVo3HvfQaHEhooUhSIiNoEkZYSm/HyWg5c0dXFa9f8AS1suhrawRes9UDix37zQp1GxvAvOpPadoD73cQZ8FgbNb7Q0gMr1JJ2m8I34q6dpS20W377Xt4EETiJzzUJYJDQ+RD+mmgfRq/xe5BZf8ObR9Fnf/ZBL+Gfop+zj9m11at9OpTbTp4XGgFpz2Anrn2q4YHTAErHPs4svNikZrAF7o87eD+b5q2mjLVztNtdtKGvaHAud1TBl2/q2r0VM8yUGU+naTvhNGB5VKoO99Kcdi5trz+VvgbGjuaAuj6w2sC0XnPaTSoOkMODTUcyMtpDSsHrrSFyi8+WS4u4vN72Iz3jsVadGTJQAJyk8EFt9TX0sLwXGWirMzZrHaXeTSqO/ZPrKFoZWp/OUXtjaQQO+IXZmVqYGxNVtLUmjpOaB1ke1K6KcX7OM0rcZluY2yrappsVGRXYb7RDXsumQMhUBiY3jFW2vek7PVFNtE0y4OJcWXZi7Akjj4LH1FuCaBzlF9ljV0mQ74i9TaCYMy58xF8eThGQAV9ovTweIfF7bsmNoWOacEYKEsMZKh4fInF2dFvNe6JTrbReMnMQJA2Deuf2XST6ZkdLqcTlulaKxafpvFxwuE4XTiDwdt7YXLLC4ndj+VGf8ZdW20uZLoDmecBgR1t38CqDTFoYW3qZBnIY47w4e9FpHSD6Quh96m4G9IBddOyTmOvNZ22Wm+8ubgXZpsePyTz56tFjoa1F1aWm6bpkTAd1dZzOK1WimuqWhja4+Kkc4Tg0NGMOJwBIBA4yuf0XFhBaYIMgrU2HSzKouvwOWcOG3A7WyMu8Kk407olgyWuN7NJrnoyy06zOZAHOMvEU3dEGSJbMiD7Fj7dU5rZIM5+9SrdaKbcKpHU5serIcFRtZVtLgymHPON0bYnMrRjykNOfCNeTZcktjZUrVKjmklgF36ImSeJwC6cx/TdwHtUPQejmWenTpMaG3WYxtdhJJ2mdqkMPTd2LuSpHGSSVHc9KrPgKCapuuO0AnwwTIBTaa0LTruvOADgDDhE3mwRM4Ht3rAaz6RfVqhj3hwpdFpu3cdpIG3Z2BdAp15JuuvZOJPmgA4mMuHUuR2u0c5VfU+k5zu8k+1OtCZH4FU3w8Hq96lVdMPLObBAbtwxMZA9WxQGFNnJBiWPXuvw/ugmMdyCSwnVrD+W1PQb7VK1Z/Im+k/wBdVBBCHZXJ0UeksrT+sU/saaz+t/zY/SfyFBBdOT6MguzKFX2ryCC84vDsvtJfNrBWry0EEpTIOWbNO1USCddEkEzaiaggiYDs0mtkUEEGAmO+bd6J9ZUZuSCCSBTJ4AUhuY4oIJpCLsd0lmOC1fJf89U9AfXYjQQx9lJfc6+3yj6PtUfz3dnqRoLrQoVt8hQfNd2oIIoDKer+SVv0LvquXIQggj4EydjozPD3JvYEEFpEg0EEEgx//9k=" alt="Spotify Icon">
+                        </figure>
+                      </div>
+                      <div class="media-content">
+                        <p class="title is-6">Leans Pt. 2</p>
+                        <p class="subtitle is-6">Yunk Vino</p>
+                      </div>
+                      <button id="playPauseButton" class="button is-info">
+                        <i class="fas fa-pause"></i> <!-- Ícone de pausa no estado inicial -->
+                      </button>
+                    </div>
+                    <div class="content has-text-centered">
+                      <audio id="background-audio" autoplay loop>
+                        <source src="10 - Leans Pt. 2.mp3" type="audio/mp3">
+                        Seu navegador não suporta a tag de áudio.
+                      </audio>
+                      <div class="progress-bar">
+                        <span id="progress-bar-fill"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+  
+  <!-- Container principal -->
+  <div class="container">
+    <!-- Título da seção -->
+    <div class="box">
+      <h2 class="title is-3 has-text-centered">Caminho das Memórias</h2>
+      <p class="subtitle has-text-centered">Uma jornada pelos nossos momentos favoritos.</p>
+    </div>
+
+    <!-- Momentos e suas legendas dentro de boxes -->
+    <div class="columns is-multiline">
+      <div class="column is-one-third">
+        <div class="box">
+          <figure class="image">
+            <img src="images/PXL_20240120_202710168.jpg" alt="Momento 1">
+          </figure>
+          <div class="content mt-2">
+            <p>"Este momento marcou o início de algo realmente especial."<br>
+              22-01-2024 as 20:27
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="column is-one-third">
+        <div class="box">
+          <figure class="image">
+            <img src="images/IMG-20241012-WA0021.jpg" alt="Momento 2">
+          </figure>
+          <div class="content mt-2">
+            <p>"Um dia que nunca vamos esquecer, cheio de risos e alegria."<br>
+            12-10-2024
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="column is-one-third">
+        <div class="box">
+          <figure class="image">
+            <img src="images/PXL_20240612_220518642.jpg" alt="Momento 3">
+          </figure>
+          <div class="content mt-2">
+            <p>"O amor é paciente, o amor é bondoso. Não inveja, não se vangloria, não se orgulha. Não maltrata, não procura seus próprios interesses, não se irrita, não guarda rancor." - 1 Coríntios 13:4-5"</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="column is-one-third">
+        <div class="box">
+          <figure class="image">
+            <img src="images/PXL_20240612_220418227.jpg" alt="Momento 4">
+          </figure>
+          <div class="content mt-2">
+            <p>"Cada vez que lembramos deste momento, é como reviver uma parte da nossa felicidade."</p>
+          </div>
+        </div>
+      </div>
+      <div class="column is-one-third">
+        <div class="box">
+          <figure class="image">
+            <img src="images/PXL_20241110_155935260.jpg"  alt="Momento 6">
+          </figure>
+          <div class="content mt-2">
+            <p>"Lembranças deste dia sempre nos aquecerão o coração. O amor ficou mais forte naquele instante."</p>
+          </div>
+        </div>
+      </div>
+    
+      <div class="column is-one-third">
+        <div class="box">
+          <figure class="image">
+            <img src="images/IMG_20241102_162030_604.webp" alt="Momento 7">
+          </figure>
+          <div class="content mt-2">
+            <p>"Momentos simples, mas tão cheios de significado. É aqui que encontramos nossa paz."</p>
+          </div>
+        </div>
+      </div>
+    
+      <div class="column is-one-third">
+        <div class="box">
+          <figure class="image">
+            <img src="images/IMG_20241029_173318_699.webp" alt="Momento 8">
+          </figure>
+          <div class="content mt-2">
+            <p>"Uma imagem que resume todos os sentimentos que compartilhamos. A felicidade é estar ao seu lado."</p>
+          </div>
+        </div>
+      </div>
+    
+      <div class="column is-one-third">
+        <div class="box">
+          <figure class="image">
+            <img src="images/IMG-20241012-WA0020.jpg" alt="Momento 9">
+          </figure>
+          <div class="content mt-2">
+            <p>"Cada riso, cada olhar, cada gesto. Este dia ficará gravado para sempre em nossos corações."</p>
+          </div>
+        </div>
+      </div>
+    
+      <div class="column is-one-third">
+        <div class="box">
+          <figure class="image">
+            <img src="images/PXL_20240818_201041969.jpg" alt="Momento 10">
+          </figure>
+          <div class="content mt-2">
+            <p>"Em cada passo que damos juntos, encontramos mais razões para celebrar nosso amor. Este momento é um marco."</p>
+          </div>
+        </div>
+      </div>
+    </div> <!-- Fim das colunas -->
+
+  </div> <!-- Fim do container -->
+  <body>
+  <!-- Script -->
+  <script > // Seleciona os elementos necessários
+    const audio = document.getElementById('background-audio');
+    const playPauseButton = document.getElementById('playPauseButton');
+    const progressBarFill = document.getElementById('progress-bar-fill');
+
+    // Alterna entre play e pause no clique do botão
+    playPauseButton.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playPauseButton.innerHTML = '<i class="fas fa-pause"></i>'; // Ícone de pausa
+      } else {
+        audio.pause();
+        playPauseButton.innerHTML = '<i class="fas fa-play"></i>'; // Ícone de play
+      }
+    });
+
+    // Atualiza a barra de progresso enquanto o áudio toca
+    audio.addEventListener('timeupdate', () => {
+      const progress = (audio.currentTime / audio.duration) * 100;
+      progressBarFill.style.width = progress + '%';
+    });
+    document.addEventListener('DOMContentLoaded', () => {
+    const burger = document.querySelector('.navbar-burger');
+    const menu = document.querySelector('.navbar-menu');
+
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('is-active');
+      menu.classList.toggle('is-active');
+    });
+  });</script>
+</body>
+</html>
